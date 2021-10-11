@@ -4,14 +4,14 @@ filebeat.inputs:
     - '/var/lib/docker/containers/*/*.log'
 
 processors:
-  - add_docker_metadata:
-    host: "unix:///var/run/docker.sock"
-  - decode_xml:
-      field: message
-      target_field: xml
-      to_lower: false
-      ignore_missing: true
-      ignore_failure: true
+- add_docker_metadata:
+  host: "unix:///var/run/docker.sock"
+- decode_xml:
+    field: message
+    target_field: xml
+    to_lower: false
+    ignore_missing: true
+    ignore_failure: true
 
 output.elasticsearch:
   hosts: ["elasticsearch:9200"]
