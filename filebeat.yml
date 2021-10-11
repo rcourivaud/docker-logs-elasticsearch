@@ -4,9 +4,8 @@ filebeat.inputs:
     - '/var/lib/docker/containers/*/*.log'
 
 processors:
-- add_docker_metadata:
+  - add_docker_metadata:
     host: "unix:///var/run/docker.sock"
-processors:
   - decode_xml:
       field: message
       target_field: xml
@@ -29,7 +28,9 @@ output.elasticsearch:
       when.or:
         - equals:
             container.image.name: scriptal/nexsis:0.1.0
-    - index: "filebeat-failed-%{+yyyy.MM.dd}"
+        - contains:
+            container.image.name: scriptal
+        - contains:
+            container.container.name: scriptal
 
-logging.json: true
-logging.metrics.enabled: false
+    - index: "filebeat-failed-%{+yyyy.MM.dd}"
