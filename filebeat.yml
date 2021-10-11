@@ -27,8 +27,8 @@ output.elasticsearch:
             container.image.name: docker.elastic.co/kibana/kibana:7.15.0
     - index: "filebeat-scriptal-%{+yyyy.MM.dd}"
       when.or:
-        - contains:
-            container.image.name: scriptal
+        - equals:
+            container.image.name: scriptal/nexsis:0.1.0
     - index: "filebeat-failed-%{+yyyy.MM.dd}"
 
 logging.json: true
