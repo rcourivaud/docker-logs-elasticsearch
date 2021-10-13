@@ -5,6 +5,9 @@ services:
         environment:
             - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
             - "discovery.type=single-node"
+            - ELASTIC_USERNAME=ansc
+            - ELASTIC_PASSWORD=ansc
+            - xpack.security.enabled=true
         ports:
             - "9200:9200"
         volumes:
@@ -14,6 +17,10 @@ services:
         image: "docker.elastic.co/kibana/kibana:7.15.0"
         ports:
             - "5601:5601"
+        environment:
+            - ELASTIC_USERNAME=ansc
+            - ELASTIC_PASSWORD=ansc
+            - xpack.security.enabled=true
 
     filebeat:
         image: "docker.elastic.co/beats/filebeat:7.15.0"
