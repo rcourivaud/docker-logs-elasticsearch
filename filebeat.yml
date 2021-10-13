@@ -14,7 +14,7 @@ processors:
 output.elasticsearch:
 
   hosts: ["elasticsearch:9200"]
-  username: "ansc" 
+  username: "elastic" 
   password: "ansc" 
   indices:
     - index: "filebeat-elastic-%{+yyyy.MM.dd}"
